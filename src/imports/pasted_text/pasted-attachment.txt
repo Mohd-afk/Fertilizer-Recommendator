@@ -1,0 +1,187 @@
+I want you to act as a full-stack AI research and engineering agent for an agricultural fertilizer recommendation system.
+
+Main objective:
+Gather the best available datasets and code sources from Kaggle and other credible public sources, then use them to design and build a machine learning-based fertilizer recommendation system that can predict:
+1. Which fertilizer to recommend
+2. How much fertilizer to apply
+3. Over what time period or application schedule it should be applied
+4. Why that recommendation was made
+
+Important context:
+This system will later connect to an Arduino-based soil sensing device that provides live soil pH and soil moisture data. The final system must support both manual input and live hardware input.
+
+Your tasks:
+
+TASK 1 — Dataset collection
+Search Kaggle and related public sources for datasets, notebooks, and code relevant to:
+- fertilizer recommendation
+- crop recommendation
+- soil pH
+- soil moisture
+- NPK soil values
+- weather factors such as rainfall, humidity, temperature
+- crop type and soil type
+- fertilizer dosage or application timing
+- agronomy rules for fertilizer application
+
+Gather:
+- dataset name
+- source URL
+- license if visible
+- row count if visible
+- column names if visible
+- target variable if visible
+- whether it is real, synthetic, scraped, modeled, or unclear
+- whether it supports fertilizer type prediction, dosage prediction, or timing prediction
+
+Prioritize Kaggle first, but also use credible public agronomy and agricultural research sources when Kaggle does not provide dosage or time-period labels.
+
+TASK 2 — Dataset quality screening
+Do not blindly trust every Kaggle dataset.
+Score each dataset for:
+- relevance
+- completeness
+- realism
+- usefulness for live sensor integration
+- suitability for prediction of fertilizer type
+- suitability for prediction of quantity/dosage
+- suitability for prediction of schedule/timing
+- likely data quality risks
+
+Then shortlist the best datasets for:
+A. fertilizer type recommendation
+B. fertilizer dosage estimation
+C. fertilizer timing/schedule recommendation
+D. crop-soil compatibility
+
+TASK 3 — Unified schema design
+Create one master schema that can combine the shortlisted datasets into a unified machine learning table.
+
+The unified schema should include, where possible:
+- soil_ph
+- soil_moisture_percent
+- nitrogen
+- phosphorus
+- potassium
+- temperature_c
+- humidity_percent
+- rainfall_mm
+- soil_type
+- crop_type
+- crop_variety
+- fertilizer_type
+- fertilizer_dosage
+- dosage_unit
+- application_stage
+- application_timing_days
+- recommendation_reason
+- source_dataset
+- confidence_or_quality_flag
+
+Map equivalent fields across datasets and identify missing columns.
+If some datasets only support fertilizer type but not dosage or timing, explain how to combine ML with rule-based agronomy logic.
+
+TASK 4 — Machine learning design
+Design a full ML pipeline with separate modules for:
+1. sensor preprocessing and calibration alignment
+2. fertilizer type prediction
+3. fertilizer dosage prediction
+4. fertilizer timing/schedule prediction
+5. confidence scoring
+6. explanation layer
+
+Use appropriate ML approaches:
+- classification for fertilizer type
+- regression or band prediction for dosage
+- regression, ranking, or rule-based scheduling for timing
+- anomaly detection or validation for bad sensor readings
+
+Evaluate candidate algorithms such as:
+- Random Forest
+- XGBoost
+- CatBoost
+- LightGBM
+- SVM
+- KNN
+- Logistic Regression
+- Decision Tree
+- ensemble models
+
+For each prediction task, recommend the best algorithm choices and explain why.
+
+TASK 5 — Calculations and agronomy logic
+I want the system to predict not only the fertilizer name but also:
+- how much to apply
+- in what unit
+- whether to split the application
+- over what time period
+- any warning if pH or moisture conditions make application unsafe or inefficient
+
+When direct labels are not available in datasets, derive a hybrid system:
+- ML model for fertilizer type prediction
+- rule-based or formula-based module for dosage and timing using agronomy references
+- constraints based on crop type, soil type, NPK gap, pH, moisture, and rainfall/weather context
+
+Explicitly calculate and model:
+- nutrient deficiency gap
+- dosage band
+- split application logic
+- stage-based recommendation
+- timing windows
+- rainfall or moisture-based delay warnings
+
+TASK 6 — Hardware integration planning
+Design the system so it can accept live values later from Arduino.
+Assume Arduino can send JSON like:
+{"ph": 6.8, "moisture": 42, "temperature": 29.1, "humidity": 70}
+
+Explain how live sensor values should be calibrated and transformed before entering the ML pipeline.
+Do not use raw ADC values directly in the ML model.
+Use calibrated engineering values only.
+
+TASK 7 — Output deliverables
+Produce:
+1. A dataset/source inventory table
+2. A shortlist of best datasets
+3. A merged-schema design
+4. ML pipeline architecture
+5. recommended algorithms by task
+6. feature engineering plan
+7. dosage and timing calculation logic
+8. evaluation metrics for each model
+9. repository/project structure
+10. backend API input/output format
+11. farmer-facing app input and output design
+12. sample prediction JSON
+13. clear assumptions and risks
+
+TASK 8 — Code generation
+Generate production-ready starter code for:
+- dataset loading
+- preprocessing
+- feature mapping
+- model training
+- model evaluation
+- prediction pipeline
+- dosage/timing rule engine
+- API endpoints
+- mock Arduino input adapter
+
+Preferred stack:
+- Python
+- pandas
+- scikit-learn
+- xgboost/lightgbm/catboost where suitable
+- FastAPI or Flask for backend
+- modular project structure
+- GitHub-ready repository structure
+
+Important rules:
+- Separate fertilizer type prediction, dosage prediction, and timing prediction into different modules
+- Mark clearly what is dataset-driven vs rule-driven
+- Do not claim dosage/timing accuracy unless supported by data or agronomy references
+- Highlight which outputs are high-confidence and which are estimated
+- Be explicit where external agronomy sources are needed because Kaggle alone may not be enough
+
+Final goal:
+Build a complete blueprint and code foundation for a fertilizer recommendation system that begins with Kaggle and public datasets, but is realistic enough to integrate with calibrated Arduino pH and moisture sensors and provide practical fertilizer recommendations to farmers.

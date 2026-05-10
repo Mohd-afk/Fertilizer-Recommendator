@@ -1,0 +1,6 @@
+soil_ph,soil_moisture_percent,nitrogen,phosphorus,potassium,temperature_c,humidity_percent,rainfall_mm,soil_type,crop_type,fertilizer_type,dosage_kg_per_acre,application_timing,confidence
+6.5,45,40,35,30,28.5,70,120,loamy,rice,Urea,150,Basal dose at puddling followed by top dressing,85
+7.2,30,20,50,45,32.0,55,80,sandy,maize,DAP,120,Apply 25% at sowing and 75% at knee-high,90
+5.8,60,60,20,50,24.0,80,200,clay,sugarcane,MOP,180,Apply in two split doses during early growth,82
+6.2,50,30,30,30,27.0,75,150,alluvial,wheat,NPK 14-35-14,200,Apply 1/3 Nitrogen at sowing,88
+6.8,40,45,40,40,29.0,65,100,red,cotton,NPK 10-26-26,160,Basal application during soil preparation,92
