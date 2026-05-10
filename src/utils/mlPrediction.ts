@@ -33,8 +33,8 @@ export class MLModel {
     manualInputs: ManualInputs
   ): Promise<MLPrediction> {
     try {
-      // Try to get prediction from the Python Backend (Proxied via /api in dev, or direct on Vercel)
-      const response = await fetch('/api/predict', {
+      // Try to get prediction from the Python Backend (Proxied via /_/backend)
+      const response = await fetch('/_/backend/predict', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -35,10 +35,10 @@ export default defineConfig({
   assetsInclude: ['**/*.svg', '**/*.csv'],
   server: {
     proxy: {
-      '/api': {
+      '/_/backend': {
         target: 'http://localhost:8000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/_\/backend/, ''),
       },
     },
   },
